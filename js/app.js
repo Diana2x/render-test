@@ -37,8 +37,30 @@ const deleteMovieBtn = document.getElementById('deleteMovieBtn');
 const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
 
 // Inicializar modales de Bootstrap
-const movieDetailModal = new bootstrap.Modal(document.getElementById('movieDetailModal'));
-const deleteConfirmModal = new bootstrap.Modal(document.getElementById('deleteConfirmModal'));
+let movieDetailModal;
+let deleteConfirmModal;
+
+// Inicializamos los modales más tarde para evitar errores si los elementos no existen aún
+function initModals() {
+  try {
+    const movieDetailElement = document.getElementById('movieDetailModal');
+    const deleteConfirmElement = document.getElementById('deleteConfirmModal');
+    
+    if (movieDetailElement) {
+      movieDetailModal = new bootstrap.Modal(movieDetailElement);
+    } else {
+      console.error('Error: Elemento movieDetailModal no encontrado');
+    }
+    
+    if (deleteConfirmElement) {
+      deleteConfirmModal = new bootstrap.Modal(deleteConfirmElement);
+    } else {
+      console.error('Error: Elemento deleteConfirmModal no encontrado');
+    }
+  } catch (error) {
+    console.error('Error al inicializar modales:', error);
+  }
+}
 
 // Variable para almacenar la película seleccionada actualmente
 let currentMovie = null;
@@ -102,9 +124,28 @@ const renderMovies = (movies) => {
 
 // Función para ver detalles de una película
 window.viewMovieDetails = async (movieId) => {
+  console.log('Intentando ver detalles de película ID:', movieId);
+  
+  if (!movieDetailModal) {
+    console.warn('Modal no inicializado, intentando inicializar ahora...');
+    initModals();
+  }
+  
   try {
     const movie = await getMovieById(movieId);
+    if (!movie) {
+      console.error('No se pudo obtener la película con ID:', movieId);
+      showAlert(alertContainer, 'No se pudo cargar la película solicitada', 'warning');
+      return;
+    }
+    
+    console.log('Película cargada correctamente:', movie.title);
     currentMovie = movie;
+    
+    if (!movieDetailContent) {
+      console.error('Error: elemento movieDetailContent no encontrado');
+      return;
+    }
     
     movieDetailContent.innerHTML = `
       <div class="row">
@@ -125,7 +166,12 @@ window.viewMovieDetails = async (movieId) => {
       </div>
     `;
     
-    movieDetailModal.show();
+    if (movieDetailModal) {
+      movieDetailModal.show();
+    } else {
+      console.error('Error: No se pudo mostrar el modal porque no está inicializado');
+      showAlert(alertContainer, 'Error al mostrar detalles', 'danger');
+    }
   } catch (error) {
     showAlert(alertContainer, 'Error al cargar los detalles de la película', 'danger');
     console.error('Error al cargar los detalles:', error);
@@ -337,5 +383,22 @@ const resetForm = () => {
 
 // Cargar películas al iniciar
 window.addEventListener('DOMContentLoaded', () => {
-  loadMovies();
+  console.log('App iniciada: Cargando películas...');
+  // Verificamos que los elementos DOM existan
+  if (!moviesContainer) {
+    console.error('Error: No se encontró el elemento moviesContainer');
+  }
+  if (!addMovieForm) {
+    console.error('Error: No se encontró el elemento addMovieForm');
+  }
+  
+  // Inicializar modales
+  initModals();
+  
+  try {
+    loadMovies();
+  } catch (error) {
+    console.error('Error al cargar películas en DOMContentLoaded:', error);
+    showAlert(alertContainer || document.body, 'Error al iniciar la aplicación. Revisa la consola para más detalles.', 'danger');
+  }
 });

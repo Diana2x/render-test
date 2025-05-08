@@ -4,6 +4,12 @@ import { getFirestore, collection, addDoc, getDocs, doc, getDoc, updateDoc, dele
 // Importar configuración de Firebase desde archivo separado
 import { firebaseConfig } from './config.js';
 
+console.log('Iniciando Firebase con configuración:', { 
+  projectId: firebaseConfig.projectId,
+  authDomain: firebaseConfig.authDomain,
+  // No logueamos API Keys por seguridad
+});
+
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
