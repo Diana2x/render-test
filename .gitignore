@@ -1,5 +1,5 @@
-# Ignorar archivos de configuración con credenciales
-js/config.js
+# Los archivos de configuración ahora se generan durante el despliegue
+# js/config.js
 
 # Dependencias
 node_modules/

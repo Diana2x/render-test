@@ -2,7 +2,7 @@ services:
   - type: web
     name: cinezone
     env: static
-    buildCommand: ./build.sh
+    buildCommand: chmod +x ./build.sh && ./build.sh
     staticPublishPath: ./
     envVars:
       - key: FIREBASE_API_KEY
