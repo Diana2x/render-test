@@ -1,0 +1,10 @@
+# Ignorar archivos de configuración con credenciales
+js/config.js
+
+# Dependencias
+node_modules/
+
+# Archivos temporales
+.DS_Store
+.env
+*.log

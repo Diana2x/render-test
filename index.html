@@ -74,6 +74,74 @@
       font-size: 24px;
       margin-right: 10px;
     }
+
+    .movie-card {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .movie-poster {
+      height: 300px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background-color: #ff4081;
+      border-color: #ff4081;
+    }
+
+    .btn-primary:hover {
+      background-color: #e6366f;
+      border-color: #e6366f;
+    }
+
+    .btn-danger {
+      background-color: #f44336;
+      border-color: #f44336;
+    }
+
+    .nav-tabs .nav-link.active {
+      background-color: rgba(255, 64, 129, 0.7);
+      color: white;
+      border: none;
+    }
+
+    .nav-tabs .nav-link {
+      color: #e0e0e0;
+      border: none;
+    }
+
+    .form-control, .form-select {
+      background-color: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .form-control:focus, .form-select:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-color: #ff4081;
+      color: white;
+      box-shadow: 0 0 0 0.25rem rgba(255, 64, 129, 0.25);
+    }
+
+    .form-control::placeholder, .form-select::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Estilo para mensajes de error/éxito */
+    .alert {
+      border-radius: 10px;
+    }
   </style>
 </head>
 
@@ -91,53 +159,248 @@
 
     <!-- Contenido -->
     <div class="mt-4 content">
-      <h1>Bienvenido al Catálogo de Películas</h1>
-      <p>
-        Descubre las mejores películas de todos los tiempos con nuestra
-        selección cuidadosamente curada.
-      </p>
+      <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+            role="tab" aria-controls="home" aria-selected="true">
+            <i class="fas fa-home"></i> Inicio
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="peliculas-tab" data-bs-toggle="tab" data-bs-target="#peliculas" type="button"
+            role="tab" aria-controls="peliculas" aria-selected="false">
+            <i class="fas fa-film"></i> Películas
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="agregar-tab" data-bs-toggle="tab" data-bs-target="#agregar" type="button"
+            role="tab" aria-controls="agregar" aria-selected="false">
+            <i class="fas fa-plus"></i> Agregar Película
+          </button>
+        </li>
+      </ul>
 
-      <!-- Sección de Géneros -->
-      <div class="section">
-        <i class="fas fa-film icon"></i>
-        <div>
-          <h2>Explora los géneros más populares</h2>
+      <div class="tab-content" id="myTabContent">
+        <!-- Tab Inicio -->
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <h1>Bienvenido al Catálogo de Películas</h1>
           <p>
-            Desde acción hasta drama, pasando por ciencia ficción y comedia.
+            Descubre las mejores películas de todos los tiempos con nuestra
+            selección cuidadosamente curada.
           </p>
+
+          <!-- Sección de Géneros -->
+          <div class="section">
+            <i class="fas fa-film icon"></i>
+            <div>
+              <h2>Explora los géneros más populares</h2>
+              <p>
+                Desde acción hasta drama, pasando por ciencia ficción y comedia.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sección de Recomendaciones -->
+          <div class="section">
+            <i class="fas fa-star icon"></i>
+            <div>
+              <h2>Recomendaciones exclusivas</h2>
+              <p>
+                Basadas en tus preferencias, nuestro sistema te sugerirá las
+                mejores opciones.
+              </p>
+            </div>
+          </div>
+
+          <!-- Sección de Nuevos Estrenos -->
+          <div class="section">
+            <i class="fas fa-calendar-alt icon"></i>
+            <div>
+              <h2>Nuevos estrenos</h2>
+              <p>Mantente al día con las últimas películas en cartelera.</p>
+            </div>
+          </div>
+          <div class="d-flex flex-column align-items-center justify-content-center mt-4">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/8B1EtVPBSMw?si=1MdngMlS0Qh12lpn"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <a href="https://youtu.be/8B1EtVPBSMw?si=1MdngMlS0Qh12lpn" target="_blank" class="mt-3 text-light">
+              Ver video en YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- Tab Películas -->
+        <div class="tab-pane fade" id="peliculas" role="tabpanel" aria-labelledby="peliculas-tab">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>Catálogo de Películas</h1>
+            <div class="input-group" style="max-width: 300px;">
+              <input type="text" class="form-control" placeholder="Buscar película..." id="searchInput">
+              <button class="btn btn-primary" type="button" id="searchButton">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+
+          <div id="alertContainer"></div>
+
+          <!-- Filtros -->
+          <div class="row mb-4">
+            <div class="col-md-4">
+              <select class="form-select" id="genreFilter">
+                <option value="">Todos los géneros</option>
+                <option value="Acción">Acción</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Drama">Drama</option>
+                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                <option value="Terror">Terror</option>
+                <option value="Romance">Romance</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <select class="form-select" id="yearFilter">
+                <option value="">Todos los años</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2010s">2010-2019</option>
+                <option value="2000s">2000-2009</option>
+                <option value="older">Anterior a 2000</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <select class="form-select" id="sortBy">
+                <option value="title">Ordenar por título</option>
+                <option value="year">Ordenar por año</option>
+                <option value="rating">Ordenar por calificación</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Lista de películas -->
+          <div class="row" id="moviesContainer">
+            <!-- Las películas se cargarán dinámicamente aquí desde Firebase -->
+            <div class="col-12 text-center py-5">
+              <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Cargando...</span>
+              </div>
+              <p class="mt-2">Cargando películas...</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Agregar Película -->
+        <div class="tab-pane fade" id="agregar" role="tabpanel" aria-labelledby="agregar-tab">
+          <h1 class="mb-4">Agregar Nueva Película</h1>
+          
+          <div id="formAlertContainer"></div>
+
+          <form id="addMovieForm">
+            <input type="hidden" id="movieId">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="title" class="form-label">Título</label>
+                <input type="text" class="form-control" id="title" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="director" class="form-label">Director</label>
+                <input type="text" class="form-control" id="director" required>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="year" class="form-label">Año</label>
+                <input type="number" class="form-control" id="year" min="1900" max="2099" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="duration" class="form-label">Duración (min)</label>
+                <input type="number" class="form-control" id="duration" min="1" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="rating" class="form-label">Calificación</label>
+                <input type="number" class="form-control" id="rating" min="0" max="10" step="0.1" required>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="genre" class="form-label">Género</label>
+              <select class="form-select" id="genre" required>
+                <option value="">Seleccionar género</option>
+                <option value="Acción">Acción</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Drama">Drama</option>
+                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                <option value="Terror">Terror</option>
+                <option value="Romance">Romance</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="posterUrl" class="form-label">URL del Póster</label>
+              <input type="url" class="form-control" id="posterUrl" required>
+              <small class="form-text text-muted">Introduce la URL de una imagen para el póster de la película</small>
+            </div>
+            
+            <div class="mb-3">
+              <label for="synopsis" class="form-label">Sinopsis</label>
+              <textarea class="form-control" id="synopsis" rows="3" required></textarea>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+              <button type="submit" class="btn btn-primary" id="saveButton">
+                <i class="fas fa-save"></i> Guardar Película
+              </button>
+              <button type="button" class="btn btn-secondary" id="resetButton">
+                <i class="fas fa-undo"></i> Limpiar Formulario
+              </button>
+            </div>
+          </form>
         </div>
       </div>
+    </div>
 
-      <!-- Sección de Recomendaciones -->
-      <div class="section">
-        <i class="fas fa-star icon"></i>
-        <div>
-          <h2>Recomendaciones exclusivas</h2>
-          <p>
-            Basadas en tus preferencias, nuestro sistema te sugerirá las
-            mejores opciones.
-          </p>
+    <!-- Modal para ver detalles de película -->
+    <div class="modal fade" id="movieDetailModal" tabindex="-1" aria-labelledby="movieDetailModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="movieDetailModalLabel">Detalles de la Película</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="movieDetailContent">
+            <!-- El contenido se cargará dinámicamente -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="editMovieBtn">Editar</button>
+            <button type="button" class="btn btn-danger" id="deleteMovieBtn">Eliminar</button>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Sección de Nuevos Estrenos -->
-      <div class="section">
-        <i class="fas fa-calendar-alt icon"></i>
-        <div>
-          <h2>Nuevos estrenos</h2>
-          <p>Mantente al día con las últimas películas en cartelera.</p>
+    <!-- Modal de confirmación para eliminar -->
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteConfirmModalLabel">Confirmar Eliminación</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ¿Estás seguro de que deseas eliminar esta película? Esta acción no se puede deshacer.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+          </div>
         </div>
       </div>
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/8B1EtVPBSMw?si=1MdngMlS0Qh12lpn"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <a href="https://youtu.be/8B1EtVPBSMw?si=1MdngMlS0Qh12lpn" target="_blank" class="mt-3">
-          Ver video en YouTube
-        </a>
-      </div>
-
     </div>
 
     <!-- Footer -->
@@ -156,7 +419,12 @@
     </div>
   </div>
 
+  <!-- Scripts de Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Firebase -->
+  <script type="module" src="js/firebase.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 
 </html>
