@@ -8,4 +8,4 @@ export const firebaseConfig = {
   storageBucket: "STORAGE_BUCKET_PLACEHOLDER",
   messagingSenderId: "MESSAGING_SENDER_ID_PLACEHOLDER",
   appId: "APP_ID_PLACEHOLDER"
-};
+}; 
