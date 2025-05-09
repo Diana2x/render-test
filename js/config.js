@@ -1,11 +1,10 @@
 // Configuración de Firebase
-// ADVERTENCIA: Este es un archivo de plantilla. En producción, estos valores se reemplazarán
-// con los valores reales de las variables de entorno.
+// NOTA: Estos son los valores reales para el funcionamiento de la aplicación
 export const firebaseConfig = {
-  apiKey: "API_KEY_PLACEHOLDER",
-  authDomain: "AUTH_DOMAIN_PLACEHOLDER",
-  projectId: "PROJECT_ID_PLACEHOLDER",
-  storageBucket: "STORAGE_BUCKET_PLACEHOLDER",
-  messagingSenderId: "MESSAGING_SENDER_ID_PLACEHOLDER",
-  appId: "APP_ID_PLACEHOLDER"
+  apiKey: "AIzaSyBpl6eYQ8TLR2L-OvbvgrBPBpbdEMaUmPA",
+  authDomain: "nextjstodolist-89757.firebaseapp.com",
+  projectId: "nextjstodolist-89757",
+  storageBucket: "nextjstodolist-89757.firebasestorage.app",
+  messagingSenderId: "806628273126",
+  appId: "1:806628273126:web:b212788db574f2054e8427"
 }; 
